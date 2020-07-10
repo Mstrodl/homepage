@@ -14,10 +14,10 @@ const blocks = [
     [2, 1],
   ],
   [
+    [0, 1],
     [1, 0],
-    [2, 0],
-    [0, 0],
     [1, 1],
+    [2, 0],
   ],
   // Line
   [
@@ -58,6 +58,15 @@ const PALETTE = [
   "hsl(120,100%,44%)",
 ];
 const linePoints = [0, 40, 100, 300, 1200];
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 async function run() {
   let running = true;
   let rows;
@@ -109,8 +118,11 @@ async function run() {
   const ctx = tetris.getContext("2d");
 
   async function doTetris() {
+    const bag = shuffle(new Array(blocks.length).fill(null).map((_, i) => i));
+
+    let turn = 0;
     while (running) {
-      const blockIndex = Math.floor(Math.random() * blocks.length);
+      const blockIndex = bag[turn++ % bag.length];
       let block = blocks[blockIndex];
 
       let posY = Math.floor(tetris.height / SCALE) - 5;

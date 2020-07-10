@@ -122,7 +122,11 @@ async function run() {
 
     let turn = 0;
     while (running) {
-      const blockIndex = bag[turn++ % bag.length];
+      if (turn >= bag.length) {
+        turn = 0;
+        shuffle(bag);
+      }
+      const blockIndex = bag[turn++];
       let block = blocks[blockIndex];
 
       let posY = Math.floor(tetris.height / SCALE) - 5;
@@ -207,9 +211,10 @@ async function run() {
                 if (!check()) {
                   block = oldBlock;
                   set(blockIndex);
+                } else {
+                  set(blockIndex);
+                  res();
                 }
-                set(blockIndex);
-                res();
               } else if (event.key == "ArrowRight") {
                 event.preventDefault();
                 set(null);

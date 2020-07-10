@@ -74,6 +74,21 @@ async function run() {
   const scoreElement = document.getElementById("tetris-score");
   const tetris = document.getElementById("tetris-bg");
 
+  const board = document.createElement("ol");
+  const gameOver = document.createElement("div");
+  gameOver.className = "modal game-over";
+  const gameOverText = document.createElement("h2");
+  gameOverText.textContent = "Game Over!";
+  gameOver.appendChild(gameOverText);
+  gameOver.appendChild(board);
+
+  const pause = document.createElement("div");
+  pause.className = "modal pause";
+  const pauseContent = document.createElement("h2");
+  pauseContent.textContent = "Press any key to continue.";
+  pause.appendChild(pauseContent);
+  document.body.appendChild(pause);
+
   let resKillSwitch = null;
   let killSwitchPromise = null;
   function setupKillSwitch() {
@@ -113,7 +128,14 @@ async function run() {
     });
   }
   window.addEventListener("resize", onResize);
-  onResize();
+  document.body.appendChild(pause);
+  function unpause(event) {
+    pause.remove();
+    event.preventDefault();
+    onResize();
+    document.removeEventListener("keydown", unpause);
+  }
+  document.addEventListener("keydown", unpause);
 
   const ctx = tetris.getContext("2d");
 
@@ -152,19 +174,36 @@ async function run() {
       }
 
       if (!check()) {
-        ctx.font = SCALE * 2 + "px Hack";
-        const measurement = ctx.measureText("Game Over!");
-        ctx.fillStyle = "#000";
-        const x = tetris.width / 2 - measurement.width / 2;
-        const y = tetris.height / 2 + SCALE;
-        ctx.fillRect(
-          x - SCALE / 2 - SCALE / 4,
-          y - SCALE * 2,
-          measurement.width + SCALE,
-          SCALE * 2 + SCALE / 2
-        );
-        ctx.fillStyle = "#00d400";
-        ctx.fillText("Game Over!", x, y);
+        setTimeout(async () => {
+          document.body.appendChild(gameOver);
+
+          await fetch(
+            (location.hostname == "localhost" ? "http://localhost:3000/" : "") +
+              "scoreboard",
+            {
+              method: "PUT",
+              body: score,
+            }
+          );
+          const scores = await fetch("scoreboard.json").then((res) =>
+            res.json()
+          );
+
+          let max = 0;
+          for (const score of scores) {
+            const scoreString = score.score.toString();
+            if (max < scoreString.length) {
+              max = scoreString.length;
+            }
+          }
+
+          for (const score of scores) {
+            const scoreElem = document.createElement("li");
+            scoreElem.textContent =
+              score.user.padEnd(max, " ") + " - " + score.score;
+            board.appendChild(scoreElem);
+          }
+        });
         return;
       }
 

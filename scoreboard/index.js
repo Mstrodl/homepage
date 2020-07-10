@@ -23,10 +23,11 @@ polka()
     }
     const user = req.headers["user-agent"].slice(0, 128);
 
+    const ourScore = Number(req.body);
     let inserted = false;
     for (const index in scores) {
       const score = scores[index].score;
-      if (req.body > score) {
+      if (ourScore > score) {
         scores.splice(index, 0, {score: req.body, user});
         inserted = true;
         break;
@@ -34,7 +35,7 @@ polka()
     }
     if (!inserted) {
       scores.push({
-        score: req.body,
+        score: ourScore,
         user,
       });
     }

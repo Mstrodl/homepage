@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Mary's Internet Realm</title>
+    <style>
+      @font-face {
+        font-family: Hack;
+        src: url(/Hack-Regular.ttf);
+      }
+      html {
+        background: #1a1a1a;
+        min-height: 100vh;
+        font-family: Hack;
+        color: #00d400;
+      }
+      body {
+        margin: 0;
+      }
+      #background-js {
+        word-break: break-all;
+        color: #003c00;
+      }
+      h1 {
+        font-size: 51px;
+      }
+      h2, .directory .item {
+        margin: 0.125em 0;
+        font-size: 40px;
+      }
+      .directory .item a {
+        background: #00d400;
+        color: #000;
+        text-decoration: none;
+      }
+      #tetris-bg, #background-js {
+        min-height: 100vh;
+        position: absolute;
+	user-select: none;
+	width: 100%;
+	bottom: 0;
+      }
+      #background-js {
+        z-index: -2;
+      }
+      #tetris-bg {
+	z-index: -1;
+      }
+      .title .description {
+        font-size: 21px;
+      }
+      /* Elinks */
+      @media screen {
+        #tetris-bg,#background-js{display: block!important}
+      }
+      .main {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      .main .pane {
+        width: 100%;
+        margin: 1em 2em;
+      }
+      .title {
+        flex: 5 5;
+      }
+      .main .pane.directory {
+        flex: 3 3;
+      }
+      .directory-wrap {
+        width: 17em;
+        margin: 4em auto;
+      }
+      @media (max-width: 700px) {
+        .main, .main .pane {
+          display: block;
+          width: calc(100% - 2em);
+        }
+	.directory.pane {
+          text-align: center;
+	}
+      }
+
+      @keyframes blink-item {
+        from {
+          background: none;
+          color: #00d400;
+        }
+        to {
+          background: #00d400;
+          color: #000;
+        }
+      }
+
+      .directory .item a:hover {
+        animation: blink-item 1s infinite steps(2,jump-none);
+      }
+
+      .badges {
+        margin-top: 3em;
+      }
+
+      #tetris-score {
+        top: 0;
+	font-size: 32px;
+        text-align: right;
+        position: absolute;
+	z-index: -1;
+      }
+    </style>
+    <script src="./tetris.js" defer></script>
+  </head>
+
+  <body>    
+    <div class="main">
+      <div class="title pane">
+        <h1>Mary's Internet Realm</h1>
+        <p class="description">Hello! I'm Mary! I do lots of stuff of questionable reasoning. My friends are probably a lot more interesting.</p>
+
+	<div class="badges">
+	  <a href="https://utsuho.rocks/" alt="Utsuho Rocks"><img src="/badge/utsuho.png"></a>
+	  <a href="https://foxwells.garden/" alt="Foxwells Garden"><img src="/badge/foxwells.png"></a>
+	  <a href="https://web.toaster.sh/" alt="Open-Source Toast"><img src="/badge/toast.png"></a>
+	  <a href="https://c7.pm/" alt="C7.PM"><img src="/badge/c7pm.gif"></a>
+	  <a href="https://elixi.re/" alt="elixi.re"><img src="/badge/elixire.gif"></a>
+	  <a href="https://notnite.com/" alt="NotNite"><img src="/badge/notnite.png"></a>
+	</div>
+      </div>
+      <div class="directory pane">
+        <div class="directory-wrap">
+          <h2>Directory:</h2>
+          <div class="item"><a href="/portfolio">Portfolio</a></div>
+          <div class="item"><a href="https://discord.com/users/196769986071625728">Discord</a></div>
+          <div class="item"><a href="https://gitlab.com/Mstrodl">Gitlab</a></div>
+          <div class="item"><a href="https://github.com/Mstrodl">GitHub</a></div>
+          <div class="item"><a href="mailto:ipadlover8322@gmail.com">Email</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tetris-score" aria-hidden></div>
+    <canvas aria-hidden id="tetris-bg" style="display:none"></canvas>
+    <p aria-hidden id="background-js" style="display:none">"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.MessageTimestamp=I,t.default=void 0;var r,a=function(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var t=m();if(t&&t.has(e))return t.get(e);var n={},r=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var a in e)if(Object.prototype.hasOwnProperty.call(e,a)){var o=r?Object.getOwnPropertyDescriptor(e,a):null;o&&(o.get||o.set)?Object.defineProperty(n,a,o):n[a]=e[a]}n.default=e,t&&t.set(e,n);return n}(n(0)),o=_(n(12)),i=n(109),l=n(6505),u=_(n(6580)),s=_(n(116)),d=_(n(6426)),f=_(n(245)),c=n(161),p=n(113),v=n(735),h=n(2),y=_(n(5771));function _(e){return e&&e.__esModule?e:{default:e}}function m(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return m=function(){return e},e}function g(){return(g=Object.assign||function(e){for(var t=1;t&lt;arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function E(e,t,n,a){r||(r="function"==typeof Symbol&&Symbol.for&&Symbol.for("react.element")||60103);var o=e&&e.defaultProps,i=arguments.length-3;if(t||0===i||(t={children:void 0}),1===i)t.children=a;else if(i&gt;1){for(var l=new Array(i),u=0;u&lt;i;u++)l[u]=arguments[u+3];t.children=l}if(t&&o)for(var s in o)void 0===t[s]&&(t[s]=o[s]);else t||(t=o||{});return{$$typeof:r,type:e,key:void 0===n?null:""+n,ref:null,props:t,_owner:null}}var S={LATIN12:y.default.latin12CompactTimeStamp,LATIN24:y.default.latin24CompactTimeStamp,ASIAN:y.default.asianCompactTimeStamp},O=/(AM|PM)$/;function I(e){var t,n=e.className,r=e.compact,i=void 0!==r&&r,l=e.timestamp,u=e.isVisibleOnlyOnHover,s=void 0!==u&&u,d=e.cozyAlt,c=void 0!==d&&d,p=i?(0,v.dateFormat)(l,"LT"):(0,v.calendarFormat)(l),h=i?function(e){return e.match(O)?S.LATIN24:e.length&lt;=5?S.LATIN12:S.ASIAN}(p):null;return E("span",{className:(0,o.default)(n,h,(t={},t[y.default.timestamp]=!0,t[y.default.timestampVisibleOnHover]=s,t[y.default.alt]=c,t))},void 0,E(f.default,{text:(0,v.dateFormat)(l,"LLLL"),"aria-label":p,tooltipClassName:y.default.timestampTooltip,delay:750},void 0,(function(e){return a.createElement("span",e,i&&E("i",{className:y.default.separator,"aria-hidden":!0},void 0,"["),p,i&&E("i",{className:y.default.separator,"aria-hidden":!0},void 0,"]"," "))})))}function C(e,t,n,r){var a;return E("img",{src:t&&(0,c.hasAnimatedAvatar)(e)?e.getAvatarURL("gif"):e.getAvatarURL("jpg"),onClick:n,onContextMenu:r,"aria-hidden":!0,className:(0,o.default)((a={},a[y.default.avatar]=!0,a[y.default.clickable]=null!=n,a)),alt:" "})}function T(e,t){var n,r=e.author.bot,a=null!=e.messageReference;if(e.isSystemDM())n=u.default.Types.SYSTEM_DM;else if(a){n=null!=e.messageReference&&e.messageReference.guild_id===l.PUBLIC_GUILD_ANNOUNCEMENTS_GUILD_ID?u.default.Types.OFFICIAL:u.default.Types.SERVER}else r&&(n=u.default.Types.BOT);return null!=n?E(u.default,{className:t?y.default.botTagCompact:y.default.botTagCozy,type:n,verified:e.author.isVerifiedBot(),useRemSizes:!0}):null}function b(e,t){var n,r=e.message,i=e.compact,l=void 0!==i&&i,u=e.onContextMenu,f=e.showUsernamePopout,c=e.onClickUsername,p=e.onPopoutRequestClose;return n=null!=t&&null!=f?E(d.default,{renderPopout:t,shouldShow:f,position:d.default.Positions.RIGHT,onRequestClose:p},void 0,(function(e){e.onClick;var t=function(e,t){if(null==e)return{};var n,r,a={},o=Object.keys(e);for(r=0;r&lt;o.length;r++)n=o[r],t.indexOf(n)&gt;=0||(a[n]=e[n]);return a}(e,["onClick"]);return a.createElement(s.default,g({tag:"span"},t,{onClick:c,onContextMenu:u,className:(0,o.default)(y.default.username,y.default.clickable),style:r.colorString?{color:r.colorString}:void 0,showFocus:!0}),__hh2_require("downmark_parser").default(r.nick||r.author.toString()),r.nick&&a.createElement("span",{className:"showTag-username"},__hh2_require("downmark_parser").default("("+r.author.tag+")")))})):E(s.default,{className:y.default.username,style:r.colorString?{color:r.colorString}:void 0,onClick:c,onContextMenu:u,showFocus:!0},void 0,r.nick||r.author.toString()),a.createElement(a.Fragment,null,l?a.createElement(a.Fragment,null," ",T(r,l)," "):null,n,l&&a.createElement(a.Fragment,null,E("i",{className:y.default.separator},void 0,":")," "),l?null:T(r,l))}I.displayName="MessageTimestamp",C.displayName="renderAvatar";var A=function(e){var t=e.message,n=e.compact,r=void 0!==n&&n,o=e.renderPopout,l=e.showTimestampOnHover,u=a.useMemo((function(){return null!=o?function(e){return o(e,t)}:void 0}),[o,t]),s=function(e,t){var n=e.message,r=e.compact,o=void 0!==r&&r,l=e.subscribeToGroupId,u=e.animate,s=void 0===u||u,f=e.onContextMenu,v=e.onClickAvatar,y=e.onPopoutRequestClose,_=e.showAvatarPopout,m=a.useState(!1),g=m[0],S=m[1],O=a.useContext(i.AccessibilityPreferencesContext).reducedMotion,I=(0,c.hasAnimatedAvatar)(n.author),T=!O.enabled&&(null!=l?g:s),b=n.author.id;if(a.useEffect((function(){if(I&&null!=l)return p.ComponentDispatch.subscribe(h.ComponentActions.ANIMATE_CHAT_AVATAR(l+":"+b),S),function(){p.ComponentDispatch.unsubscribe(h.ComponentActions.ANIMATE_CHAT_AVATAR(l+":"+b),S)}}),[b,I,l]),!o)return null!=t&&null!=_?E(d.default,{renderPopout:t,shouldShow:_,position:d.default.Positions.RIGHT,onRequestClose:y},void 0,(function(){return C(n.author,T,v,f)})):C(n.author,T,v,f)}(e,u),f=b(e,u);return a.createElement(a.Fragment,null,s,E("h2",{className:y.default.header},void 0,r&&E(I,{compact:!0,timestamp:t.timestamp,isVisibleOnlyOnHover:l}),f,!r&&E(I,{timestamp:t.timestamp})))};t.default=A</p>
+  </body>
+</html>

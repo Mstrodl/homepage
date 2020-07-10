@@ -173,6 +173,7 @@ async function run() {
           new Promise((res) => {
             function handle(event) {
               if (event.key == "ArrowLeft") {
+                event.preventDefault();
                 set(null);
                 --posX;
                 if (!check()) {
@@ -183,6 +184,7 @@ async function run() {
                   res();
                 }
               } else if (event.key == "ArrowUp") {
+                event.preventDefault();
                 set(null);
                 const oldBlock = block;
                 block = [];
@@ -197,6 +199,7 @@ async function run() {
                 set(blockIndex);
                 res();
               } else if (event.key == "ArrowRight") {
+                event.preventDefault();
                 set(null);
                 ++posX;
                 if (!check()) {
@@ -207,6 +210,7 @@ async function run() {
                   res();
                 }
               } else if (event.key == "ArrowDown") {
+                event.preventDefault();
                 set(null);
                 --posY;
                 if (!check()) {

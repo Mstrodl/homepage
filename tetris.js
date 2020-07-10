@@ -185,9 +185,9 @@ async function run() {
               body: score,
             }
           );
-          const scores = await fetch("scoreboard.json").then((res) =>
-            res.json()
-          );
+          const scores = await fetch(
+            "scoreboard.json/?" + Date.now()
+          ).then((res) => res.json());
 
           let max = 0;
           for (const score of scores) {

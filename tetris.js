@@ -191,9 +191,8 @@ async function run() {
 
           let max = 0;
           for (const score of scores) {
-            const scoreString = score.score.toString();
-            if (max < scoreString.length) {
-              max = scoreString.length;
+            if (max < score.user.length) {
+              max = score.user.length;
             }
           }
 

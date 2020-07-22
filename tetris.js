@@ -115,7 +115,7 @@ async function run() {
       // TODO: Listen for resize
       tetris.width = window.innerWidth;
       tetris.height = window.innerHeight;
-      if (tetris.width < 800) {
+      if (tetris.width <= 800) {
         return;
       }
       running = true;
@@ -127,13 +127,13 @@ async function run() {
       doTetris();
     });
   }
-  window.addEventListener("resize", onResize);
   document.body.appendChild(pause);
   function unpause(event) {
     pause.remove();
     event.preventDefault();
     onResize();
     document.removeEventListener("keydown", unpause);
+    window.addEventListener("resize", onResize);
   }
   document.addEventListener("keydown", unpause);
 
@@ -331,8 +331,14 @@ async function run() {
   }
 }
 
-if (document.readyState == "complete" || document.readyState == "interactive") {
-  run();
-} else {
-  window.addEventListener("DOMContentLoaded", run);
+// Just don't run on mobile, okay??
+if (!navigator.userAgentData || !navigator.userAgentData.mobile) {
+  if (
+    document.readyState == "complete" ||
+    document.readyState == "interactive"
+  ) {
+    run();
+  } else {
+    window.addEventListener("DOMContentLoaded", run);
+  }
 }

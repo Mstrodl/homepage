@@ -132,13 +132,14 @@
         <p class="description">Hello! I'm Mary! I do lots of stuff of questionable reasoning. My friends are probably a lot more interesting.</p>
 
         <div class="badges">
-          <a href="https://coolmathgames.tech/"><img alt="Mary's House" src="/badge/maryhouse.png"></a>
-          <a href="https://utsuho.rocks/"><img alt="Utsuho Rocks" src="/badge/utsuho.png"></a>
-          <a href="https://foxwells.garden/"><img alt="Foxwells Garden" src="/badge/foxwells.png"></a>
-          <a href="https://web.toaster.sh/"><img alt="Open-Source Toast" src="/badge/toast.png"></a>
-          <a href="https://c7.pm/"><img alt="C7.PM" src="/badge/c7pm.gif"></a>
-          <a href="https://elixi.re/"><img alt="elixi.re" src="/badge/elixire.gif"></a>
-          <a href="https://notnite.com/"><img alt="NotNite" src="/badge/notnite.png"></a>
+          <a href="https://coolmathgames.tech/"><img alt="Mary's House" src="badge/maryhouse.png"></a>
+          <a href="https://utsuho.rocks/"><img alt="Utsuho Rocks" src="badge/utsuho.png"></a>
+          <a href="https://wavetable.cymru/"><img alt="Wavetable CYMRU" src="badge/spork.png"></a>
+          <a href="https://foxwells.garden/"><img alt="Foxwells Garden" src="badge/foxwells.png"></a>
+          <a href="https://web.toaster.sh/"><img alt="Open-Source Toast" src="badge/toast.png"></a>
+          <a href="https://c7.pm/"><img alt="C7.PM" src="badge/c7pm.gif"></a>
+          <a href="https://elixi.re/"><img alt="elixi.re" src="badge/elixire.gif"></a>
+          <a href="https://notnite.com/"><img alt="NotNite" src="badge/notnite.png"></a>
         </div>
       </div>
       <div class="directory pane">
@@ -179,17 +180,21 @@
         padding: 1em;
         overflow: auto;
       }
-
+      @media (max-width: 800px) {
+	.pause {
+          display: none;
+	}
+      }
       .pause {
         height: 4em;
 	z-index: -1;
       }
+      .modal h2 {
+        text-align: center;
+      }
 
       .game-over {
         height: 15em;
-      }
-      .modal h2 {
-        text-align: center;
       }
     </style>
   </body>

@@ -24,6 +24,11 @@ polka()
     const user = req.headers["user-agent"].slice(0, 128);
 
     const ourScore = Number(req.body);
+    if (ourScore < 500) {
+      res.statusCode = 204;
+      res.end(null);
+      return;
+    }
     let inserted = false;
     for (const index in scores) {
       const score = scores[index].score;

@@ -12,7 +12,8 @@
     <style>
       @font-face {
         font-family: Hack;
-        src: url(/Hack-Regular.woff2) U+21-U+7E;
+        src: url(/Hack-Regular.woff2);
+        unicode-range: U+00-U+7F;
       }
       html {
         background: #1a1a1a;
@@ -187,13 +188,13 @@
         overflow: auto;
       }
       @media (max-width: 800px) {
-	.pause {
+        .pause {
           display: none;
-	}
+        }
       }
       .pause {
         height: 4em;
-	z-index: -1;
+        z-index: -1;
       }
       .modal h2 {
         text-align: center;
